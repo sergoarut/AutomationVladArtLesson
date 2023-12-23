@@ -28,3 +28,32 @@ class RadioButtonPageLocators:
     IMPRESSIVE_RADIO_BUTTON = (By.XPATH, "//label[@for='impressiveRadio']")
     NO_RADIO_BUTTON = (By.XPATH, "//label[@for='noRadio']")
     OUTPUT_RESULT = (By.CSS_SELECTOR, ".text-success")
+
+
+class WebTablesPageLocators:
+    # ADD PERSON FORM
+    ADD_NEW_USER_BUTTON = (By.CSS_SELECTOR, "#addNewRecordButton")
+    FIRST_NAME_FORM = (By.CSS_SELECTOR, "#firstName")
+    LAST_NAME_FORM = (By.CSS_SELECTOR, "#lastName")
+    USER_EMAIL_FORM = (By.CSS_SELECTOR, "#userEmail")
+    USER_AGE_FORM = (By.CSS_SELECTOR, "#age")
+    USER_SALARY_FORM = (By.CSS_SELECTOR, "#salary")
+    USER_DEPARTMENT_FORM = (By.CSS_SELECTOR, "#department")
+    SUBMIT_FORM_BUTTON = (By.CSS_SELECTOR, "#submit")
+
+    # TABLE
+    FULL_PEOPLE_LIST = (By.CSS_SELECTOR, "div[class='rt-tr-group']")
+    SEARCH_INPUT = (By.CSS_SELECTOR, "input[id='searchBox']")
+    SEARCH_BUTTON = (By.CSS_SELECTOR, ".input-group-append")
+    PRESENT_PERSON = (By.XPATH, "//span[@title='Delete']//ancestor::div[@class='rt-tr-group']")
+    EDIT_PERSON = (By.XPATH, "//span[@title='Edit']")
+    DELETE_BUTTON = (By.XPATH, "//span[@title='Delete']")
+
+    # ROWS
+    SELECT_ROWS = (By.XPATH, "//select[@aria-label='rows per page']")
+    FIVE_ROWS = (By.CSS_SELECTOR, "option[value='5']")
+    TEN_ROWS = (By.CSS_SELECTOR, "option[value='10']")
+    TWENTY_ROWS = (By.CSS_SELECTOR, "option[value='20']")
+    TWENTY_FIVE_ROWS = (By.CSS_SELECTOR, "option[value='25']")
+    FIFTY_ROWS = (By.CSS_SELECTOR, "option[value='50']")
+    ONE_HUNDRED_ROWS = (By.CSS_SELECTOR, "option[value='100']")
