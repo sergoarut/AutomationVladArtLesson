@@ -3,7 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
 
-@pytest.fixture()
+@pytest.fixture(scope='function')
 def driver():
     options = Options()
     options.add_argument("--no-sandbox")

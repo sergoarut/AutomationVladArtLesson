@@ -14,3 +14,11 @@ class TextBoxPageLocators:
     OUTPUT_USER_EMAIL = (By.CSS_SELECTOR, "#email")
     OUTPUT_CURRENT_ADDRESS = (By.CSS_SELECTOR, "#output #currentAddress")
     OUTPUT_PERMANENT_ADDRESS = (By.CSS_SELECTOR, "#output #permanentAddress")
+
+
+class CheckBoxPageLocators:
+    EXPEND_LIST_BUTTON = (By.XPATH, "//button[@title='Expand all']")
+    ITEM_LIST = (By.CSS_SELECTOR, ".rct-title")
+    CLICKED_ITEM_LIST = (By.XPATH, "//*[@class='rct-icon rct-icon-check']/../../*[@class='rct-title']")
+    RECEIVED_ITEMS_LIST = (By.CSS_SELECTOR, ".text-success")
+

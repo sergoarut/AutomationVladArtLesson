@@ -1,4 +1,4 @@
 .env
 .idea
-pycache
+.pytst_cache
 debug.py

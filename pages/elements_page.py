@@ -1,4 +1,6 @@
-from locators.elements_page_locators import TextBoxPageLocators
+import random
+
+from locators.elements_page_locators import TextBoxPageLocators, CheckBoxPageLocators
 from pages.base_page import BasePage
 from generator.generator import generated_person
 
@@ -27,3 +29,31 @@ class TextBoxPage(BasePage):
         return full_name, email, current_address, permanent_address
 
 
+class CheckBoxPage(BasePage):
+    locators = CheckBoxPageLocators()
+
+    def open_full_list(self):
+        self.element_is_visible(self.locators.EXPEND_LIST_BUTTON).click()
+
+    def click_random_checkbox(self):
+        item_list = self.elements_are_visible(self.locators.ITEM_LIST)
+        count = 25
+        while count != 0:
+            item = item_list[random.randint(0, 16)]
+            self.go_to_element(item)
+            item.click()
+            count -= 1
+
+    def get_clicked_items(self):
+        list_clicked_checkbox = []
+        clicked_checkbox = self.elements_are_presents(self.locators.CLICKED_ITEM_LIST)
+        for item in clicked_checkbox:
+            list_clicked_checkbox.append(item.text.lower().split('.')[0].replace(" ",""))
+        return list_clicked_checkbox
+
+    def get_received_items(self):
+        list_received_checkbox = []
+        received_checkbox = self.elements_are_visible(self.locators.RECEIVED_ITEMS_LIST)
+        for item in received_checkbox:
+            list_received_checkbox.append(item.text.lower().split('.')[0].replace(" ",""))
+        return list_received_checkbox
