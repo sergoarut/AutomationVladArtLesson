@@ -22,3 +22,9 @@ class CheckBoxPageLocators:
     CLICKED_ITEM_LIST = (By.XPATH, "//*[@class='rct-icon rct-icon-check']/../../*[@class='rct-title']")
     RECEIVED_ITEMS_LIST = (By.CSS_SELECTOR, ".text-success")
 
+
+class RadioButtonPageLocators:
+    YES_RADIO_BUTTON = (By.XPATH, "//label[@for='yesRadio']")
+    IMPRESSIVE_RADIO_BUTTON = (By.XPATH, "//label[@for='impressiveRadio']")
+    NO_RADIO_BUTTON = (By.XPATH, "//label[@for='noRadio']")
+    OUTPUT_RESULT = (By.CSS_SELECTOR, ".text-success")

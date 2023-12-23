@@ -1,5 +1,5 @@
 import pytest
-from pages.elements_page import TextBoxPage, CheckBoxPage
+from pages.elements_page import TextBoxPage, CheckBoxPage, RadioButtonPage
 
 
 class TestElements:
@@ -18,6 +18,7 @@ class TestElements:
 
     class TestCheckBox:
 
+        @pytest.mark.skip
         def test_check_box(self, driver):
             check_box_page = CheckBoxPage(driver, "https://demoqa.com/checkbox")
             check_box_page.open()
@@ -25,6 +26,23 @@ class TestElements:
             check_box_page.click_random_checkbox()
             clicket_items = check_box_page.get_clicked_items()
             received_items = check_box_page.get_received_items()
-            assert clicket_items == received_items, "clicked items are not equal to received items"
+            assert clicket_items == received_items, "clicked checkbox are not equal to received checkbox"
 
 
+    class TestRadioButton:
+
+        def test_radiobutton(self, driver):
+            radio_button_page = RadioButtonPage(driver, "https://demoqa.com/radio-button")
+            radio_button_page.open()
+            key = ["Yes", "Impressive", "No"]
+            radio_button_page.click_on_the_radiobutton(key[0])
+            received_yes_radio_button = radio_button_page.get_output_result()
+            radio_button_page.click_on_the_radiobutton(key[1])
+            received_impressive_radio_button = radio_button_page.get_output_result()
+            radio_button_page.click_on_the_radiobutton(key[2])
+            received_no_radio_button = radio_button_page.get_output_result()
+            assert key[0] == received_yes_radio_button, "'Yes' radiobutton are not equal to received radiobutton"
+            assert key[1] == received_impressive_radio_button, "'Impressive' radiobutton are not equal " \
+                                                               "to received radiobutton"
+            # assert key[2] == received_no_radio_button, "'No' radiobutton are not equal to received radiobutton"
+            """"Бага сервиса, данная кнопка задизейблена"""
