@@ -3,7 +3,7 @@ import time
 
 import pytest
 
-from pages.elements_page import TextBoxPage, CheckBoxPage, RadioButtonPage, WebTablesPage
+from pages.elements_page import TextBoxPage, CheckBoxPage, RadioButtonPage, WebTablesPage, ButtonsPage
 
 
 class TestElements:
@@ -109,3 +109,32 @@ class TestElements:
             rows_list = web_tables_page.change_rows()
             assert rows_list == count, 'The number of rows in the table has not been changed or has changed incorrectly'
             # на странице баг в верстке при попытке открыть 25, 50, 100 строк
+
+    class TestButtons:
+
+        @pytest.mark.skip
+        def test_double_click_botton(self, driver):
+            buttons_page = ButtonsPage(driver, "https://demoqa.com/buttons")
+            buttons_page.open()
+            buttons_page.double_click()
+            expected_message = "You have done a double click"
+            message = buttons_page.check_double_click()
+            assert message == expected_message, "The double click did not occure"
+
+        @pytest.mark.skip
+        def test_right_click_botton(self, driver):
+            buttons_page = ButtonsPage(driver, "https://demoqa.com/buttons")
+            buttons_page.open()
+            buttons_page.right_click()
+            expected_message = "You have done a right click"
+            message = buttons_page.check_right_click()
+            assert message == expected_message, "The right click did not occure"
+
+        @pytest.mark.skip
+        def test_dynamic_click_botton(self, driver):
+            buttons_page = ButtonsPage(driver, "https://demoqa.com/buttons")
+            buttons_page.open()
+            buttons_page.dynamic_click()
+            expected_message = "You have done a dynamic click"
+            message = buttons_page.check_dynamic_click()
+            assert message == expected_message, "The dynamic click did not occure"

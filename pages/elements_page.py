@@ -2,10 +2,11 @@ import random
 import time
 
 from locators.elements_page_locators import TextBoxPageLocators, CheckBoxPageLocators, RadioButtonPageLocators, \
-    WebTablesPageLocators
+    WebTablesPageLocators, ButtonsPageLocators
 from pages.base_page import BasePage
 from generator.generator import generated_person
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
 
 
 class TextBoxPage(BasePage):
@@ -179,3 +180,30 @@ class WebTablesPage(BasePage):
 
     def all_rows(self):
         return len(self.elements_are_visible(self.locators.FULL_PEOPLE_LIST))
+
+
+class ButtonsPage(BasePage):
+    locators = ButtonsPageLocators()
+
+    def __init__(self, driver, url):
+        super().__init__(driver, url)
+        self.driver = driver
+        self.actions = ActionChains(self.driver)
+
+    def double_click(self):
+        self.actions.double_click(self.element_is_visible(self.locators.DOUBLE_CLICK_BUTTON)).perform()
+
+    def check_double_click(self):
+        return self.element_is_present(self.locators.DOUBLE_CLICK_MESSAGE).text
+
+    def right_click(self):
+        self.actions.context_click(self.element_is_visible(self.locators.RIGHT_CLICK_BUTTON)).perform()
+
+    def check_right_click(self):
+        return self.element_is_present(self.locators.RIGHT_CLICK_MESSAGE).text
+
+    def dynamic_click(self):
+        self.actions.click(self.element_is_visible(self.locators.DYNAMIC_CLICK_BUTTON)).perform()
+
+    def check_dynamic_click(self):
+        return self.element_is_present(self.locators.DYNAMIC_CLICK_MESSAGE).text

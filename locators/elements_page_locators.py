@@ -57,3 +57,12 @@ class WebTablesPageLocators:
     TWENTY_FIVE_ROWS = (By.CSS_SELECTOR, "option[value='25']")
     FIFTY_ROWS = (By.CSS_SELECTOR, "option[value='50']")
     ONE_HUNDRED_ROWS = (By.CSS_SELECTOR, "option[value='100']")
+
+
+class ButtonsPageLocators:
+    DOUBLE_CLICK_BUTTON = (By.CSS_SELECTOR, "#doubleClickBtn")
+    DOUBLE_CLICK_MESSAGE = (By.CSS_SELECTOR, "#doubleClickMessage")
+    RIGHT_CLICK_BUTTON = (By.CSS_SELECTOR, "#rightClickBtn")
+    RIGHT_CLICK_MESSAGE = (By.CSS_SELECTOR, "#rightClickMessage")
+    DYNAMIC_CLICK_BUTTON = (By.XPATH, "//button[text()='Click Me']")
+    DYNAMIC_CLICK_MESSAGE = (By.CSS_SELECTOR, "#dynamicClickMessage")
