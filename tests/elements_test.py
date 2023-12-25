@@ -3,7 +3,8 @@ import time
 
 import pytest
 
-from pages.elements_page import TextBoxPage, CheckBoxPage, RadioButtonPage, WebTablesPage, ButtonsPage
+from pages.elements_page import TextBoxPage, CheckBoxPage, RadioButtonPage, WebTablesPage, ButtonsPage, LinksPage,\
+    UploadAndDownloadPage
 
 
 class TestElements:
@@ -138,3 +139,37 @@ class TestElements:
             expected_message = "You have done a dynamic click"
             message = buttons_page.check_dynamic_click()
             assert message == expected_message, "The dynamic click did not occure"
+
+    class TestLinks:
+
+        @pytest.mark.skip
+        def test_check_link_open_tab(self, driver):
+            links_page = LinksPage(driver, "https://demoqa.com/links")
+            links_page.open()
+            href_url, current_url = links_page.check_new_tab_link()
+            assert href_url == current_url, "Status code are not equal to 200"
+
+        @pytest.mark.skip
+        def test_send_api_links(self, driver):
+            links_page = LinksPage(driver, "https://demoqa.com/links")
+            links_page.open()
+            required_status_codes = [201, 204, 301, 400, 401, 403, 404]
+            recived_status_codes = links_page.check_send_api_link()
+            assert recived_status_codes == required_status_codes, "Status codes are not equal to required status codes"
+
+    class TestUploadAndDownload:
+
+        @pytest.mark.skip
+        def test_upload_file(self, driver):
+            upload_page = UploadAndDownloadPage(driver, "https://demoqa.com/upload-download")
+            upload_page.open()
+            upload_file_path = upload_page.upload_file()
+            uploaded_path = upload_page.check_uploaded_file()
+            assert uploaded_path == upload_file_path, "Failed to uploaded file"
+
+        @pytest.mark.skip
+        def test_download_file(self, driver):
+            download_page = UploadAndDownloadPage(driver, "https://demoqa.com/upload-download")
+            download_page.open()
+            check = download_page.download_file()
+            assert check == True, "Failed to downloaded file"

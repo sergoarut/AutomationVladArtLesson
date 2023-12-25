@@ -1,4 +1,5 @@
 import random
+import sys
 
 from data.data import Person
 from faker import Faker
@@ -19,3 +20,11 @@ def generated_person():
         current_address=faker_ru.address(),
         permanent_address=faker_ru.address()
     )
+
+
+def generator_file():
+    path = sys.path[1] + fr"\generated_files\upload_file{random.randint(1, 100)}.txt"
+    with open(path, "w+") as file:
+        file.write(f"It's a test file number{random.randint(1, 100)}")
+    return file.name
+

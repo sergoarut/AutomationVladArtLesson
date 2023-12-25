@@ -1,10 +1,13 @@
+import base64
+import os
 import random
+import sys
 import time
-
+import requests
 from locators.elements_page_locators import TextBoxPageLocators, CheckBoxPageLocators, RadioButtonPageLocators, \
-    WebTablesPageLocators, ButtonsPageLocators
+    WebTablesPageLocators, ButtonsPageLocators, LinksPageLocators, UploadAndDownloadPageLocators
 from pages.base_page import BasePage
-from generator.generator import generated_person
+from generator.generator import generated_person, generator_file
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 
@@ -207,3 +210,55 @@ class ButtonsPage(BasePage):
 
     def check_dynamic_click(self):
         return self.element_is_present(self.locators.DYNAMIC_CLICK_MESSAGE).text
+
+
+class LinksPage(BasePage):
+    locators = LinksPageLocators()
+
+    def check_new_tab_link(self):
+        simple_link = self.element_is_visible(self.locators.DYNAMIC_REQUEST)
+        links_href = simple_link.get_attribute('href')
+        request = requests.get(links_href)
+        if request.status_code == 200:
+            simple_link.click()
+            self.switch_to_number_tab(2)
+            url = self.get_url()
+            return links_href, url
+        else:
+            return links_href, request.status_code
+
+    def check_send_api_link(self):
+        current_url = "https://demoqa.com/"
+        list_locators = [self.locators.CREATED_REQUEST, self.locators.NO_CONTENT_REQUEST, self.locators.MOVED_REQUEST,
+                         self.locators.BED_REQUEST, self.locators.UNAUTHORIZED_REQUEST, self.locators.FORBIDDEN_REQUEST,
+                         self.locators.NOT_FOUND_REQUEST]
+        status_codes = []
+        for link_locator in list_locators:
+            link = f"{current_url}{self.element_is_visible(link_locator).get_attribute('id')}"
+            status_codes.append(requests.get(link).status_code)
+        return status_codes
+
+
+class UploadAndDownloadPage(BasePage):
+    locators = UploadAndDownloadPageLocators()
+
+    def upload_file(self):
+        file_path = generator_file()
+        self.element_is_present(self.locators.UPLOAD_FILE_BUTTON).send_keys(file_path)
+        os.remove(file_path)
+        fake_path = 'C:\\fakepath\\' + file_path.split('\\')[-1]
+        return fake_path
+
+    def check_uploaded_file(self):
+        return self.element_is_visible(self.locators.UPLOADED_TEXT).text
+
+    def download_file(self):
+        link = self.element_is_visible(self.locators.DOWNLOAD_FILE_BUTTON).get_attribute('href')
+        link_b = base64.b64decode(link)
+        path_name_file = sys.path[1] + fr"\downloaded_files\download_file.jpeg"
+        with open(path_name_file, "wb+") as file:
+            offset = link_b.find(b"\xff\xd8")
+            file.write(link_b[offset:])
+            check_file = os.path.exists(path_name_file)
+        os.remove(path_name_file)
+        return check_file

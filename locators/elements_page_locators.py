@@ -66,3 +66,22 @@ class ButtonsPageLocators:
     RIGHT_CLICK_MESSAGE = (By.CSS_SELECTOR, "#rightClickMessage")
     DYNAMIC_CLICK_BUTTON = (By.XPATH, "//button[text()='Click Me']")
     DYNAMIC_CLICK_MESSAGE = (By.CSS_SELECTOR, "#dynamicClickMessage")
+
+
+class LinksPageLocators:
+    DYNAMIC_REQUEST = (By.CSS_SELECTOR, "#dynamicLink")
+    CREATED_REQUEST = (By.CSS_SELECTOR, "#created")
+    NO_CONTENT_REQUEST = (By.CSS_SELECTOR, "#no-content")
+    MOVED_REQUEST = (By.CSS_SELECTOR, "#moved")
+    BED_REQUEST = (By.CSS_SELECTOR, "#bad-request")
+    UNAUTHORIZED_REQUEST = (By.CSS_SELECTOR, "#unauthorized")
+    FORBIDDEN_REQUEST = (By.CSS_SELECTOR, "#forbidden")
+    NOT_FOUND_REQUEST = (By.CSS_SELECTOR, "#invalid-url")
+
+
+class UploadAndDownloadPageLocators:
+    UPLOAD_FILE_BUTTON = (By.CSS_SELECTOR, "#uploadFile")
+    UPLOADED_TEXT = (By.CSS_SELECTOR, "#uploadedFilePath")
+    DOWNLOAD_FILE_BUTTON = (By.CSS_SELECTOR, "#downloadButton")
+
+

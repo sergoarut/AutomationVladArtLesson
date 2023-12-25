@@ -30,3 +30,9 @@ class BasePage:
 
     def go_to_element(self, element):
         self.driver.execute_script("arguments[0].scrollIntoView();", element)
+
+    def switch_to_number_tab(self, number_tab):
+        self.driver.switch_to.window(self.driver.window_handles[number_tab-1])
+
+    def get_url(self):
+        return self.driver.current_url
