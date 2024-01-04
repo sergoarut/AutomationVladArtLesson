@@ -89,4 +89,3 @@ class DynamicPropertiesPageLocators:
     ENABLE_BUTTON = (By.CSS_SELECTOR, "#enableAfter")
     COLOR_CHANGE_BUTTON = (By.CSS_SELECTOR, "#colorChange")
     VISIBLE_BUTTON = (By.CSS_SELECTOR, "#visibleAfter")
-

@@ -3,7 +3,7 @@ import time
 
 import pytest
 
-from pages.elements_page import TextBoxPage, CheckBoxPage, RadioButtonPage, WebTablesPage, ButtonsPage, LinksPage,\
+from pages.elements_page import TextBoxPage, CheckBoxPage, RadioButtonPage, WebTablesPage, ButtonsPage, LinksPage, \
     UploadAndDownloadPage, DynamicPropertiesPage
 
 
@@ -190,7 +190,6 @@ class TestElements:
             red_color = 'rgba(220, 53, 69, 1)'
             color_before, color_after = dynamic_properties_page.check_change_of_color()
             assert color_before == red_color, 'Element of not red color'
-
 
         @pytest.mark.skip
         def test_visible_button(self, driver):

@@ -9,7 +9,7 @@ from selenium.webdriver.chrome.service import Service
 def driver():
     options = Options()
     options.add_argument("--no-sandbox")
-    options.add_argument(r"--user-data-dir=C:\Users\Сережа\PycharmProjects\AutomationVladArtLesson\chrome")
+    # options.add_argument(r"--user-data-dir=C:\Users\Сережа\PycharmProjects\AutomationVladArtLesson\chrome")
     options.add_argument("--user-agen5t='Mozilla/5.0 (Windows NT 6.1; Trident/7.0; rv:11.0) like Gecko'")
     options.add_argument("--disable-blink-features=AutomationControlled")
     options.add_argument('--ignore-certificate-errors-spki-list')
