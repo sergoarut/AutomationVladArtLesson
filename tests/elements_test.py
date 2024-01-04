@@ -4,7 +4,7 @@ import time
 import pytest
 
 from pages.elements_page import TextBoxPage, CheckBoxPage, RadioButtonPage, WebTablesPage, ButtonsPage, LinksPage,\
-    UploadAndDownloadPage
+    UploadAndDownloadPage, DynamicPropertiesPage
 
 
 class TestElements:
@@ -173,3 +173,28 @@ class TestElements:
             download_page.open()
             check = download_page.download_file()
             assert check == True, "Failed to downloaded file"
+
+    class TestDynamicProperties:
+
+        @pytest.mark.skip
+        def test_enable_button(self, driver):
+            dynamic_properties_page = DynamicPropertiesPage(driver, "https://demoqa.com/dynamic-properties")
+            dynamic_properties_page.open()
+            clickable = dynamic_properties_page.check_enable_button()
+            assert clickable == True, 'Element of not clicable'
+
+        @pytest.mark.skip
+        def test_change_color_button(self, driver):
+            dynamic_properties_page = DynamicPropertiesPage(driver, "https://demoqa.com/dynamic-properties")
+            dynamic_properties_page.open()
+            red_color = 'rgba(220, 53, 69, 1)'
+            color_before, color_after = dynamic_properties_page.check_change_of_color()
+            assert color_before == red_color, 'Element of not red color'
+
+
+        @pytest.mark.skip
+        def test_visible_button(self, driver):
+            dynamic_properties_page = DynamicPropertiesPage(driver, "https://demoqa.com/dynamic-properties")
+            dynamic_properties_page.open()
+            visible = dynamic_properties_page.check_visible_button()
+            assert visible == True, 'Element of not visibled in 5 second'
